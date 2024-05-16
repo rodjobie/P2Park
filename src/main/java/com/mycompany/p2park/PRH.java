@@ -30,6 +30,7 @@ public class PRH extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("P2Park Management");
 
         jButton1.setText("Park in");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -39,6 +40,11 @@ public class PRH extends javax.swing.JFrame {
         });
 
         jButton3.setText("View Parked in");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,6 +75,12 @@ public class PRH extends javax.swing.JFrame {
     park_in.setVisible(true); // Show the Park_in form
     this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+History history = new History();
+history.setVisible(true);
+this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
