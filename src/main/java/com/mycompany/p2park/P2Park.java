@@ -12,6 +12,9 @@ package com.mycompany.p2park;
 public class P2Park {
 
     public static void main(String[] args) {
-        PRH prh = new PRH();
-prh.setVisible(true);    }
+        
+        LoginForm loginform = new LoginForm();
+        loginform.setVisible(true);
+        
+            }
 }

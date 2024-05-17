@@ -142,16 +142,16 @@ public class PWD extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,9 +160,9 @@ public class PWD extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -198,8 +198,8 @@ this.dispose();
 String[] lot = jTextField1.getText().split("/");
     int current = Integer.parseInt(lot[0]);
     int total = Integer.parseInt(lot[1]);
-    if (current < total) {
-        current++;
+    if (current > 0) {
+        current--;
         jTextField1.setText(current + "/" + total);
         savePWDParkingCount(current); // Save the count
         // Show a message box indicating parked in
@@ -214,22 +214,22 @@ String[] lot = jTextField1.getText().split("/");
 String[] lot = jTextField1.getText().split("/");
     int current = Integer.parseInt(lot[0]);
     int total = Integer.parseInt(lot[1]);
-    if (current > 0) {
-        current--;
+    if (current < total) {
+        current++;
         jTextField1.setText(current + "/" + total);
         savePWDParkingCount(current); // Save the count
         // Show a message box indicating a car has left
-        JOptionPane.showMessageDialog(this, "Park Area Left", "Regular Park", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Park Area Left", "PWD Park", JOptionPane.INFORMATION_MESSAGE);
     } else {
         // Show a message box indicating the parking lot is already empty
-        JOptionPane.showMessageDialog(this, "Parking lot is already empty", "Regular Park", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Parking lot has space to park", "PWD Park", JOptionPane.INFORMATION_MESSAGE);
     }  // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     
     private void loadPWDParkingCount() {
     Preferences prefs = Preferences.userNodeForPackage(Park_in.class);
-    int count = prefs.getInt("pwdParkingCount", 0);
+    int count = prefs.getInt("pwdParkingCount", 10);
     jTextField1.setText(count + "/10");
 }
 
@@ -275,23 +275,13 @@ private void savePWDParkingCount(int count) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

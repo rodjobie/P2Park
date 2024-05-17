@@ -65,7 +65,7 @@ public class Reserve extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Unpark Out");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -144,16 +144,16 @@ public class Reserve extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,9 +162,9 @@ public class Reserve extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -172,7 +172,7 @@ public class Reserve extends javax.swing.JFrame {
 
     private void loadReserveParkingCount() {
     Preferences prefs = Preferences.userNodeForPackage(Park_in.class);
-    int count = prefs.getInt("reserveParkingCount", 0);
+    int count = prefs.getInt("reserveParkingCount", 5);
     jTextField1.setText(count + "/5");
 }
 
@@ -217,8 +217,8 @@ this.dispose();
         String[] lot = jTextField1.getText().split("/");
         int current = Integer.parseInt(lot[0]);
         int total = Integer.parseInt(lot[1]);
-        if (current < total) {
-            current++;
+        if (current > 0) {
+            current--;
             jTextField1.setText(current + "/" + total);
             saveReserveParkingCount(current); // Save the count
             // Show a message box indicating parked in
@@ -233,15 +233,15 @@ this.dispose();
 String[] lot = jTextField1.getText().split("/");
     int current = Integer.parseInt(lot[0]);
     int total = Integer.parseInt(lot[1]);
-    if (current > 0) {
-        current--;
+    if (current < total) {
+        current++;
         jTextField1.setText(current + "/" + total);
         saveReserveParkingCount(current); // Save the count
         // Show a message box indicating a car has left
-        JOptionPane.showMessageDialog(this, "Park Area Left", "Regular Park", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Park Area Left", "Reserved Park", JOptionPane.INFORMATION_MESSAGE);
     } else {
         // Show a message box indicating the parking lot is already empty
-        JOptionPane.showMessageDialog(this, "Parking lot is already empty", "Regular Park", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Parking lot has space to park", "Reserved Park", JOptionPane.INFORMATION_MESSAGE);
     }  //        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 

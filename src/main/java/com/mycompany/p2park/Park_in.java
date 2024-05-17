@@ -143,16 +143,16 @@ public class Park_in extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+                .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +163,7 @@ public class Park_in extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -197,7 +197,7 @@ this.dispose();// TODO add your handling code here:
 
     private void loadCount() {
     Preferences prefs = Preferences.userNodeForPackage(Park_in.class);
-    int count = prefs.getInt("parkingCount", 0);
+    int count = prefs.getInt("parkingCount", 20);
     jTextField1.setText(count + "/20");
 }
 
@@ -214,8 +214,8 @@ private void saveCount(int count) {
         String[] lot = jTextField1.getText().split("/");
     int current = Integer.parseInt(lot[0]);
     int total = Integer.parseInt(lot[1]);
-    if (current < total) {
-        current++;
+    if (current > 0) {
+        current--;
         jTextField1.setText(current + "/" + total);
         saveCount(current); // Save the count
         // Show a message box indicating parked in
@@ -231,15 +231,15 @@ private void saveCount(int count) {
       String[] lot = jTextField1.getText().split("/");
     int current = Integer.parseInt(lot[0]);
     int total = Integer.parseInt(lot[1]);
-    if (current > 0) {
-        current--;
+    if (current < total) {
+        current++;
         jTextField1.setText(current + "/" + total);
         saveCount(current); // Save the count
         // Show a message box indicating a car has left
         JOptionPane.showMessageDialog(this, "Park Area Left", "Regular Park", JOptionPane.INFORMATION_MESSAGE);
     } else {
         // Show a message box indicating the parking lot is already empty
-        JOptionPane.showMessageDialog(this, "Parking lot is already empty", "Regular Park", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Parking lot has space to park", "Regular Park", JOptionPane.INFORMATION_MESSAGE);
     }  // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
         
